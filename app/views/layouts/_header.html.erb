@@ -1,0 +1,5 @@
+<header class="py-3">
+  <% if user_signed_in? %>
+    <%= button_to "Sing out", destroy_user_session_path, class: "btn btn-danger", method: :delete, data: { turbo: false } %>
+  <% end %>
+</header>

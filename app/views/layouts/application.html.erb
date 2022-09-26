@@ -11,6 +11,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid" style="max-width: 1600px">
+      <%= render "layouts/header" if user_signed_in? %>
+      <main>
+        <%= render "layouts/flashes" %>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
