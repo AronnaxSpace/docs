@@ -1,3 +1,4 @@
 web: bin/rails server -p 4005
 js: yarn build --watch
 css: yarn build:css --watch
+aronnax: cd ../app && foreman start -f Procfile.dev
