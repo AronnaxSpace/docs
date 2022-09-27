@@ -19,8 +19,10 @@
           <td><%= project.is_public %></td>
           <td><%= project.owner.nickname %></td>
           <td>
-            <%= link_to "Show", project %> |
-            <%= link_to "Edit", edit_project_path(project) %>
+            <%= link_to "Show", project %>
+            <% if policy(project).update? %>
+              | <%= link_to "Edit", edit_project_path(project) %>
+            <% end %>
           </td>
         </tr>
       <% end %>

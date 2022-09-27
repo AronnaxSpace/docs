@@ -24,4 +24,11 @@ class Project < ApplicationRecord
 
   # validations
   validates :name, presence: true
+
+  # scopes
+  scope :not_private, -> { where(is_public: true) }
+  scope :all_for, lambda { |user|
+    where(owner_id: user.id)
+      .or(where(is_public: true))
+  }
 end

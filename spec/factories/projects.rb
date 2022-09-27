@@ -20,8 +20,13 @@
 #
 FactoryBot.define do
   factory :project do
-    name { "MyString" }
-    description { "MyText" }
-    user { nil }
+    association :owner, factory: :user
+
+    name { Faker::Lorem.sentence }
+    description { Faker::Lorem.paragraph }
+
+    trait :open do
+      is_public { true }
+    end
   end
 end
