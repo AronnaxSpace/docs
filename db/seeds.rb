@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# frozen_string_literal: true
+
+(1..5).each do |i|
+  user = User.find_or_initialize_by(
+    email: "user_#{i}@aronnax.space",
+    provider: :aronnax,
+    uid: i
+  )
+
+  unless user.persisted?
+    user.password = 'pass1234'
+    user.password_confirmation = 'pass1234'
+    user.save!
+
+    p "user_#{i} was created"
+  end
+
+  next if user.projects.any?
+
+  10.times { FactoryBot.create(:project, owner: user, is_public: rand(99).even?) }
+
+  p "10 projects were created for user_#{i}"
+end
