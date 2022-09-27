@@ -1,6 +1,6 @@
 # Aronnax Docs
 
-#### Requirements
+### Requirements
 
 - Ruby 3.1.2
 - Bundler 2.3.22
@@ -8,23 +8,21 @@
 - Yarn
 - PostgreSQL
 
-#### Installation
+### Installation
 
-### 1. Clone the repository
+#### Clone the repository
 
 ```bash
 git clone git@github.com:AronnaxSpace/docs.git
 ```
 
-### 2. Install dependencies
+#### Install dependencies
 
 ```bash
 bundle install && yarn install
 ```
 
-### 3. Environment variables
-
-#### direnv
+#### Set environment variables
 
 Check if you have direnv installed:
 
@@ -32,10 +30,8 @@ Check if you have direnv installed:
 direnv --version
 ```
 
-Installation instructions:
+direnv installation instructions:
 https://direnv.net/docs/installation.html
-
-#### Set variables
 
 Create an .envrc file
 
@@ -64,7 +60,7 @@ Approve the .envrc content
 direnv allow
 ```
 
-### 4. Setup the database
+#### Setup the database
 
 ```bash
 rails db:create
@@ -78,7 +74,7 @@ or
 rails db:setup
 ```
 
-### 5. Launch the application
+#### Launch the application
 
 ```bash
 foreman s -f Procfile.dev
