@@ -23,6 +23,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable,
          :validatable, :omniauthable, omniauth_providers: %i[aronnax]
 
+  # associations
+  has_many :projects, as: :owner
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -35,5 +38,9 @@ class User < ApplicationRecord
       aronnax_access_token: auth.credentials.token,
       aronnax_refresh_token: auth.credentials.refresh_token
     )
+  end
+
+  def nickname
+    email.split('@').first
   end
 end

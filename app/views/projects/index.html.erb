@@ -1,0 +1,31 @@
+<h1>Projects</h1>
+
+<div id="projects">
+  <table class="table table-bordered border-primary">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Public?</th>
+        <th>Owner</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.name %></td>
+          <td><%= project.description %></td>
+          <td><%= project.is_public %></td>
+          <td><%= project.owner.nickname %></td>
+          <td>
+            <%= link_to "Show", project %> |
+            <%= link_to "Edit", edit_project_path(project) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New project", new_project_path %>
