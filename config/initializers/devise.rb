@@ -274,8 +274,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :aronnax,
-                  ENV['ARONNAX_APP_ID'],
-                  ENV['ARONNAX_APP_SECRET'],
+                  ENV.fetch('ARONNAX_APP_ID'),
+                  ENV.fetch('ARONNAX_APP_SECRET'),
                   scope: 'read',
                   strategy_class: OmniAuth::Strategies::Aronnax
 
