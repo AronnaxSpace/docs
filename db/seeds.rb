@@ -20,7 +20,17 @@ require 'faker'
 
   next if user.projects.any?
 
-  10.times { FactoryBot.create(:project, owner: user, is_public: rand(99).even?) }
+  5.times do
+    project = FactoryBot.create(:project, owner: user, is_public: rand(9).even?)
+
+    categories = FactoryBot.create_list(:category, rand(3..8), user:, project:)
+
+    categories.each do |category|
+      next if (rand(9) % 3).zero?
+
+      FactoryBot.create_list(:category, rand(3..8), user:, project:, parent: category)
+    end
+  end
 
   p "10 projects were created for user_#{i}"
 end

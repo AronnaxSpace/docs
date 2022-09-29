@@ -7,10 +7,10 @@
 #  id          :bigint           not null, primary key
 #  description :text
 #  is_public   :boolean          default(FALSE)
-#  name        :string
+#  name        :string           default(""), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  owner_id    :integer
+#  owner_id    :bigint
 #
 # Indexes
 #
@@ -22,7 +22,10 @@
 #
 class Project < ApplicationRecord
   # associations
-  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+  belongs_to :owner,
+             class_name: 'User',
+             foreign_key: 'owner_id'
+  has_many :categories, dependent: :destroy
 
   # validations
   validates :name, presence: true

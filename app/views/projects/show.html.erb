@@ -1,15 +1,22 @@
 <div class="d-flex">
-  <div style="width: 300px" class="me-3">
+  <div style="width: 300px" class="me-3 p-3 bg-light rounded-3">
+    <%= link_to "New category", new_project_category_path(project), class: "w-100 btn btn-primary", data: { "turbo-frame": "project_content" } %>
+
+    <%= render "shared/categories", project: project %>
   </div>
   <div class="flex-grow-1">
-    <%= render @project %>
+    <%= turbo_frame_tag :project_content %>
+
+    <%= render project %>
 
     <div>
-      <%= link_to "Edit this project", edit_project_path(@project) %> |
+      <%= link_to "Edit this project", edit_project_path(project) %> |
       <%= link_to "Back to projects", projects_path %>
 
       <% if policy(project).destroy? %>
-        <%= button_to "Destroy this project", @project, method: :delete, class: "btn btn-danger" %>
+        <%= button_to project, method: :delete, class: "btn btn-danger" do %>
+          <i class="bi bi-trash3"></i>
+        <% end %>
       <% end %>
     </div>
   </div>

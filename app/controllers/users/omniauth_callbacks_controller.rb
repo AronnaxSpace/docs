@@ -5,7 +5,7 @@ module Users
     def aronnax
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
-      authenticate_user if user.persisted?
+      return authenticate_user if user.persisted?
 
       session['devise.aronnax_data'] = request.env['omniauth.auth']
       redirect_to root_path
