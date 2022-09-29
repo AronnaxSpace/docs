@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'factory_bot_rails'
+require 'faker'
+
 (1..5).each do |i|
   user = User.find_or_initialize_by(
     email: "user_#{i}@aronnax.space",

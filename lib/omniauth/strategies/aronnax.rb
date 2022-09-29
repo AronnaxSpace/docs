@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'omniauth-oauth2'
 
 module OmniAuth
@@ -6,7 +8,7 @@ module OmniAuth
       option :name, :aronnax
 
       option :client_options, {
-        site: ENV['ARONNAX_APP_URL'],
+        site: ENV.fetch('ARONNAX_APP_URL'),
         authorize_url: '/oauth/authorize'
       }
 
