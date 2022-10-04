@@ -1,14 +1,12 @@
 class CreateProjects < ActiveRecord::Migration[7.0]
   def change
     create_table :projects do |t|
-      t.string :name
+      t.string :name, null: false, default: ''
       t.text :description
       t.boolean :is_public, default: false
-      t.integer :owner_id, index: true
+      t.belongs_to :owner, foreign_key: { to_table: :users }
 
       t.timestamps
     end
-
-    add_foreign_key :projects, :users, column: :owner_id
   end
 end

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'projects#index'
 
-  resources :projects
+  resources :projects do
+    resources :categories, except: %i[index show]
+  end
 end

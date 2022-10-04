@@ -1,0 +1,13 @@
+<h1>Editing category</h1>
+
+<div class="row">
+  <div class="col-xl-4 col-lg-6">
+    <%= turbo_frame_tag :project_content do %>
+      <%= render "form", category: category %>
+    <% end %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to "Back to project", project_path(project) %>

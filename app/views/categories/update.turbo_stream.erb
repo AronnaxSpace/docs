@@ -1,0 +1,9 @@
+<% if category.errors.present? %>
+  <%= turbo_stream.replace 'category_form', partial: 'form', locals: { category: category } %>
+<% else %>
+  <%= turbo_stream.replace :project_content do %>
+    <%= turbo_frame_tag :project_content %>
+  <% end %>
+
+  <%= turbo_stream.replace 'categories', partial: 'shared/categories', locals: { project: project } %>
+<% end %>

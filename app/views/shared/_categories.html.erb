@@ -1,0 +1,14 @@
+<div id="categories" class="mt-1">
+  <ul class="category_list">
+    <% project.categories.root.each do |category| %>
+      <%= render category, item_classes: "py-2", title_classes: "fw-bold fs-5" %>
+      <% if category.children.any? %>
+        <ul>
+          <% category.children.each do |subcategory| %>
+            <%= render subcategory, item_classes: "ps-3", title_classes: "fs-5" %>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
