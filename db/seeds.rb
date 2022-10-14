@@ -23,7 +23,7 @@ require 'faker'
   5.times do
     project = FactoryBot.create(:project, :with_description, owner: user, is_public: rand(9).even?)
 
-    categories = FactoryBot.create_list(:category, rand(3..8), user:, project:)
+    categories = FactoryBot.create_list(:category, rand(3..8), project:)
 
     categories.each do |category|
       next if (rand(9) % 3).zero?
