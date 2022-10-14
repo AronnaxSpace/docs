@@ -1,5 +1,8 @@
-<header class="my-3 p-3 bg-light rounded-3">
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
+  <header class="my-3 p-3 bg-light rounded-3 d-flex justify-content-between">
     <%= button_to "Sing out", destroy_user_session_path, class: "btn btn-danger", method: :delete, data: { turbo: false } %>
-  <% end %>
-</header>
+    <nav>
+      <%= link_to "Projects", projects_path, class: "btn btn-link" %>
+    </nav>
+  </header>
+<% end %>

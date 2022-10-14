@@ -21,7 +21,7 @@ require 'faker'
   next if user.projects.any?
 
   5.times do
-    project = FactoryBot.create(:project, owner: user, is_public: rand(9).even?)
+    project = FactoryBot.create(:project, :with_description, owner: user, is_public: rand(9).even?)
 
     categories = FactoryBot.create_list(:category, rand(3..8), user:, project:)
 
