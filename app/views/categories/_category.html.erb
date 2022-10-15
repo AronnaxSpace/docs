@@ -1,6 +1,6 @@
 <li id="<%= dom_id category %>">
   <div class="d-flex justify-content-between align-items-center border-bottom <%= item_classes if local_assigns[:item_classes] %>">
-    <span class="<%= title_classes if local_assigns[:title_classes] %>"><%= category.name %></span>
+    <%= link_to category.name, project_category_path(project, category), class: "#{title_classes if local_assigns[:title_classes]}", data: { "turbo-frame": "project_content" } %>
     <% if project.owner == current_user %>
       <div class="d-flex">
         <%= link_to edit_project_category_path(category.project, category), class: "p-1 btn btn-link", data: { turbo_frame: :project_content } do %>

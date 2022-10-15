@@ -1,0 +1,7 @@
+<%= turbo_frame_tag :project_content do %>
+  <%= link_to "New article", new_project_category_article_path(project, category), class: "btn btn-primary mb-3", data: { "turbo-frame": "category_content" } %>
+  
+  <%= turbo_frame_tag :category_content do %>
+    <%= render category.articles %>
+  <% end %>
+<% end %>

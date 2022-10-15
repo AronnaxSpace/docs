@@ -26,6 +26,7 @@ class Project < ApplicationRecord
              class_name: 'User',
              foreign_key: 'owner_id'
   has_many :categories, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
   # validations
   validates :name, presence: true
