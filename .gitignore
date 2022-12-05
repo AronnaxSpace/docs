@@ -35,3 +35,5 @@
 
 /node_modules
 .envrc
+
+/config/credentials/production.key
