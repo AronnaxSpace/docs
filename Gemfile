@@ -73,6 +73,10 @@ group :development do
   # gem "spring"
 end
 
+gem "capistrano", "~> 3.4"
+gem "capistrano-passenger", "~> 0.2.1"
+gem "capistrano-rails", "~> 1.6", ">= 1.6.2"
+gem "capistrano-rbenv", "~> 2.2"
 gem "devise", "~> 4.8"
 gem "omniauth-oauth2", "~> 1.8"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
