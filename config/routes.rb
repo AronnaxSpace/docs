@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root to: 'projects#index'
 
   resources :projects do
-    resources :categories, except: %i[index show]
+    resources :categories, except: %i[index] do
+      resources :articles, except: %i[index]
+    end
   end
 end

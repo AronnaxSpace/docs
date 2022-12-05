@@ -10,31 +10,17 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def create
-    @category = Category.new(category_params)
-    @category.project = project
-    @category.user = current_user
+    @category = Category.new(category_params.merge(project:, user: current_user))
 
-    respond_to do |format|
-      @category.save
-
-      format.turbo_stream
-    end
+    category.save
   end
 
   def update
-    respond_to do |format|
-      category.update(category_params)
-
-      format.turbo_stream
-    end
+    category.update(category_params)
   end
 
   def destroy
-    respond_to do |format|
-      category.destroy
-
-      format.turbo_stream
-    end
+    category.destroy!
   end
 
   private

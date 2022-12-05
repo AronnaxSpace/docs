@@ -35,6 +35,7 @@ class Category < ApplicationRecord
            class_name: 'Category',
            foreign_key: :parent_id,
            dependent: :nullify
+  has_many :articles, dependent: :nullify
 
   # validations
   validates :name, presence: true

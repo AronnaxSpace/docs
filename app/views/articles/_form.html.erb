@@ -1,0 +1,18 @@
+<%= form_with(model: [project, category, article], id: 'article_form') do |form| %>
+  <%= render "shared/errors", object: article %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.rich_text_area :content, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit nil, class: "btn btn-primary" %>
+    <%= link_to "Cancel", project_category_path(project, category), class: "btn btn-secondary", data: { "turbo-frame": "project_content" } %>
+  </div>
+<% end %>

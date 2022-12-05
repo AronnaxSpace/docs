@@ -1,0 +1,7 @@
+<% if article.errors.present? %>
+  <%= turbo_stream.replace 'article_form', partial: 'form', locals: { article: article } %>
+<% else %>
+  <%= turbo_stream.replace :project_content do %>
+    <%= turbo_frame_tag :project_content, src: project_category_path(project, category) %>
+  <% end %>
+<% end %>

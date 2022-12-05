@@ -23,14 +23,22 @@ require 'faker'
   5.times do
     project = FactoryBot.create(:project, :with_description, owner: user, is_public: rand(9).even?)
 
-    categories = FactoryBot.create_list(:category, rand(3..8), project:)
+    categories = FactoryBot.create_list(:category, rand(2..4), project:)
 
     categories.each do |category|
       next if (rand(9) % 3).zero?
 
-      FactoryBot.create_list(:category, rand(3..8), user:, project:, parent: category)
+      FactoryBot.create_list(:category, rand(2..4), user:, project:, parent: category)
     end
   end
 
-  p "10 projects were created for user_#{i}"
+  p "5 projects were created for user_#{i}"
+end
+
+if Article.count.zero?
+  Category.find_each do |category|
+    FactoryBot.create_list(:article, rand(2..4), category:)
+  end
+
+  p "#{Article.count} articles were created"
 end
