@@ -18,7 +18,7 @@ require 'faker'
     p "user_#{i} was created"
   end
 
-  next if user.projects.any?
+  next if user.owned_projects.any?
 
   5.times do
     project = FactoryBot.create(:project, :with_description, owner: user, is_public: rand(9).even?)

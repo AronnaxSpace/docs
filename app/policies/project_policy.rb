@@ -1,27 +1,10 @@
 # frozen_string_literal: true
 
 class ProjectPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
   def show?
-    return true if record.owner == user
     return true if record.is_public?
-
-    false
-  end
-
-  def create?
-    true
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
     return true if record.owner == user
+    return true if record.user_ids.include?(user.id)
 
     false
   end
@@ -30,9 +13,13 @@ class ProjectPolicy < ApplicationPolicy
     update?
   end
 
-  def destroy?
+  def update?
     return true if record.owner == user
 
     false
+  end
+
+  def destroy?
+    update?
   end
 end

@@ -15,8 +15,16 @@ describe ProjectPolicy do
       end
     end
 
-    context 'when a project belongs to a user' do
+    context 'when a project is owned by a user' do
       before { project.owner = user }
+
+      it 'grants access' do
+        expect(subject).to permit(user, project)
+      end
+    end
+
+    context 'when a user was added to a project' do
+      before { project.users << user }
 
       it 'grants access' do
         expect(subject).to permit(user, project)

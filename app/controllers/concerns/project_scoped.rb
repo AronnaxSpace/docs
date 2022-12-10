@@ -15,6 +15,6 @@ module ProjectScoped
   end
 
   def authorize_project
-    authorize project
+    authorize project, :show?
   end
 end

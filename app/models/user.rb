@@ -26,9 +26,12 @@ class User < ApplicationRecord
          :validatable, :omniauthable, omniauth_providers: %i[aronnax]
 
   # associations
-  has_many :projects,
+  has_many :owned_projects,
+           class_name: 'Project',
            foreign_key: :owner_id,
            dependent: :destroy
+  has_many :project_users
+  has_many :projects, through: :project_users
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
