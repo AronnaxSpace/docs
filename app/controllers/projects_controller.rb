@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
-  before_action :authorize_access
+  before_action :authorize_project, except: %i[index new create]
 
   def index
     @projects = Project.all_for(current_user)
   end
-
-  def show; end
 
   def new
     @project = Project.new
@@ -42,14 +40,14 @@ class ProjectsController < ApplicationController
 
   private
 
-  def authorize_access
+  def authorize_project
     return authorize project if params[:id]
 
     authorize Project
   end
 
   def project
-    @project ||= Project.find(params[:id])
+    @project ||= Project.all_for(current_user).find(params[:id])
   end
   helper_method :project
 

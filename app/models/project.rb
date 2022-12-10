@@ -27,6 +27,8 @@ class Project < ApplicationRecord
              foreign_key: 'owner_id'
   has_many :categories, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :project_users
+  has_many :users, through: :project_users
 
   # validations
   validates :name, presence: true
@@ -34,7 +36,8 @@ class Project < ApplicationRecord
   # scopes
   scope :not_private, -> { where(is_public: true) }
   scope :all_for, lambda { |user|
-    where(owner_id: user.id)
-      .or(where(is_public: true))
+    where(is_public: true)
+      .or(where(owner_id: user.id))
+      .or(where(id: user.project_ids))
   }
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_23_084145) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_10_083709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_084145) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "project_users", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id", "user_id"], name: "index_project_users_on_project_id_and_user_id", unique: true
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description"
@@ -107,5 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_084145) do
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "categories", "projects"
   add_foreign_key "categories", "users"
+  add_foreign_key "project_users", "projects"
+  add_foreign_key "project_users", "users"
   add_foreign_key "projects", "users", column: "owner_id"
 end

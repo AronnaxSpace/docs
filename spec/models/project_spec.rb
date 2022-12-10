@@ -38,6 +38,14 @@ describe Project, type: :model do
         expect(subject).to include(*public_projects, public_project_of_user, private_project_of_user)
         expect(subject).not_to include(private_projects)
       end
+
+      context 'when a user was added to a private project' do
+        before { private_projects.first.users << user }
+
+        it 'includes the project to visible' do
+          expect(subject).to include(private_projects.first)
+        end
+      end
     end
   end
 end
